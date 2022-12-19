@@ -1,0 +1,10 @@
+﻿<EditForm Model="model" OnValidSubmit="Search" method="get" class="d-md-none my-2">
+    <div class="input-group">
+        <InputText @bind-Value="model.Query" type="search" name="search" class="form-control" placeholder="Search" required />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</EditForm>
