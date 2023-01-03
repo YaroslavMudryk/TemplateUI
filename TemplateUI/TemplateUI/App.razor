@@ -1,8 +1,26 @@
 ﻿<Router AppAssembly="@typeof(Program).Assembly">
     <Found Context="routeData">
         <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <Authorizing>
+                <p>Authorizing in progress</p>
+            </Authorizing>
             <NotAuthorized>
-                <Login />
+                <AuthorizeView Context="authenticated">
+                    <Authorized Context="authenticated">
+                        <AuthorizeView Roles="Admin" Context="role">
+                            <Authorized Context="role">
+                                <NotAuthorizedView/>
+                            </Authorized>
+                            <NotAuthorized Context="role">
+                                <Forbidden/>
+                            </NotAuthorized>
+                        </AuthorizeView>
+                    </Authorized>
+                    <NotAuthorized Context="authenticated">
+                        <Login/>
+                    </NotAuthorized>
+
+                </AuthorizeView>
             </NotAuthorized>
         </AuthorizeRouteView>
     </Found>
